@@ -583,118 +583,86 @@ nav .gradient-text {
 }
 
 /* ═══════════════════════════════════════════════════════
-   PROFILE PHOTO — DIAGONAL-CUT CYBER FRAME
+   PROFILE PHOTO — CIRCULAR WITH ROTATING BORDER
    ═══════════════════════════════════════════════════════ */
 
-@keyframes cyber-pulse-orb {
+@keyframes rotate-border {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes orb-pulse {
   0%, 100% { opacity: 0.35; transform: translate(-50%, -50%) scale(1); }
-  50% { opacity: 0.55; transform: translate(-50%, -50%) scale(1.08); }
-}
-
-@keyframes cyber-border-glow {
-  0%, 100% {
-    box-shadow: 0 0 25px rgba(124, 58, 237, 0.4), 0 0 50px rgba(6, 182, 212, 0.15);
-  }
-  50% {
-    box-shadow: 0 0 40px rgba(124, 58, 237, 0.6), 0 0 80px rgba(6, 182, 212, 0.3), 0 0 100px rgba(236, 72, 153, 0.1);
-  }
-}
-
-@keyframes pill-float {
-  0%, 100% { transform: translateY(-50%) translateX(0); }
-  50% { transform: translateY(-50%) translateX(4px); }
-}
-
-/* Clip-path shape */
-:root {
-  --cyber-clip: polygon(0 0, 85% 0, 100% 15%, 100% 100%, 15% 100%, 0 85%);
+  50% { opacity: 0.5; transform: translate(-50%, -50%) scale(1.08); }
 }
 
 /* Container */
-.cyber-photo-container {
+.profile-container {
   display: inline-block;
-  transition: all 0.4s ease;
-}
-.cyber-photo-container:hover {
-  transform: scale(1.04);
-}
-
-/* Floating glow orb */
-.cyber-glow-orb {
-  width: 350px;
-  height: 350px;
-  background: radial-gradient(circle, #7c3aed 0%, transparent 70%);
-  filter: blur(80px);
-  border-radius: 50%;
-  animation: cyber-pulse-orb 4s ease-in-out infinite;
-}
-
-/* Gradient border wrapper — clip-path */
-.cyber-border-wrap {
-  background: linear-gradient(135deg, #7c3aed, #06b6d4, #ec4899);
-  clip-path: var(--cyber-clip);
-  animation: cyber-border-glow 3s ease-in-out infinite;
-}
-.cyber-photo-container:hover .cyber-border-wrap {
-  box-shadow:
-    0 0 50px rgba(124, 58, 237, 0.7),
-    0 0 100px rgba(6, 182, 212, 0.4),
-    0 0 140px rgba(236, 72, 153, 0.15);
-}
-
-/* Photo inner — same clip-path */
-.cyber-photo-inner {
-  width: 300px;
-  height: 380px;
-  clip-path: var(--cyber-clip);
-  background: #050008;
-  overflow: hidden;
-}
-
-/* Image — cover, no black bars */
-.cyber-photo-img {
-  object-fit: cover;
-  object-position: center top;
-  display: block;
-  width: 100%;
-  height: 100%;
   transition: transform 0.4s ease;
 }
-.cyber-photo-container:hover .cyber-photo-img {
+.profile-container:hover {
   transform: scale(1.05);
 }
 
-/* IBM Intern floating pill */
-.cyber-pill {
-  animation: pill-float 3s ease-in-out infinite;
+/* Glow orb behind */
+.profile-orb {
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, #7c3aed 0%, transparent 70%);
+  filter: blur(60px);
+  border-radius: 50%;
+  animation: orb-pulse 4s ease-in-out infinite;
 }
-.cyber-pill-inner {
-  background: rgba(124, 58, 237, 0.15);
-  border: 1px solid rgba(124, 58, 237, 0.4);
-  color: #a78bfa;
-  letter-spacing: 0.04em;
-  box-shadow: 0 0 20px rgba(124, 58, 237, 0.25);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+
+/* Rotating gradient border */
+.profile-border {
+  position: relative;
+  background: conic-gradient(from 0deg, #7c3aed, #06b6d4, #ec4899, #7c3aed);
+  border-radius: 50%;
+  animation: rotate-border 3s linear infinite;
+  box-shadow:
+    0 0 25px rgba(124, 58, 237, 0.6),
+    0 0 50px rgba(6, 182, 212, 0.3);
+  transition: box-shadow 0.4s ease;
 }
-.cyber-photo-container:hover .cyber-pill-inner {
-  box-shadow: 0 0 30px rgba(124, 58, 237, 0.4), 0 0 60px rgba(124, 58, 237, 0.15);
-  border-color: rgba(124, 58, 237, 0.6);
-  color: #c4b5fd;
+.profile-container:hover .profile-border {
+  box-shadow:
+    0 0 35px rgba(124, 58, 237, 0.8),
+    0 0 70px rgba(6, 182, 212, 0.4),
+    0 0 100px rgba(236, 72, 153, 0.15);
+}
+
+/* Circular image wrapper */
+.profile-image-wrapper {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+}
+
+.profile-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition: transform 0.4s ease;
+}
+.profile-container:hover .profile-image-wrapper img {
+  transform: scale(1.06);
 }
 
 /* Responsive */
 @media (max-width: 640px) {
-  .cyber-photo-inner {
+  .profile-image-wrapper {
     width: 220px;
-    height: 280px;
+    height: 220px;
   }
-  .cyber-glow-orb {
-    width: 250px;
-    height: 250px;
-  }
-  .cyber-pill {
-    right: -2px !important;
+  .profile-orb {
+    width: 260px;
+    height: 260px;
   }
 }
 

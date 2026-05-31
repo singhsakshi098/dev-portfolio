@@ -17,27 +17,19 @@ export default function About() {
           transition={{ duration: 0.7, ease: 'easeOut' }}
           className="lg:col-span-2 flex justify-center"
         >
-          <div className="cyber-photo-container relative">
-            {/* Floating glow orb behind */}
-            <div className="cyber-glow-orb absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0" />
+          <div className="profile-container relative">
+            {/* Glow orb behind */}
+            <div className="profile-orb absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0" />
 
-            {/* Gradient border wrapper with clip-path */}
-            <div className="cyber-border-wrap relative z-10 p-[3px]">
-              {/* Photo */}
-              <div className="cyber-photo-inner overflow-hidden">
+            {/* Rotating gradient border */}
+            <div className="profile-border relative z-10 rounded-full p-[3px]">
+              {/* Circular photo */}
+              <div className="profile-image-wrapper">
                 <img
                   src={profileImg}
                   alt="Sakshi Singh"
-                  className="cyber-photo-img w-full h-full"
                 />
               </div>
-            </div>
-
-            {/* Floating IBM Intern pill */}
-            <div className="cyber-pill absolute -right-4 top-1/2 -translate-y-1/2 z-20">
-              <span className="cyber-pill-inner inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-bold whitespace-nowrap">
-                IBM Intern ✦
-              </span>
             </div>
           </div>
         </motion.div>
