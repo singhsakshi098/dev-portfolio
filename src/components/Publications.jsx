@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { FiExternalLink, FiAward, FiCalendar, FiCheckCircle } from 'react-icons/fi';
 import SectionHeading from './SectionHeading';
 import { personalInfo } from '../data/portfolioData';
+import certificatePdf from '../assets/2520_Sakshi Singh.pdf';
 
 const publication = {
   title:
@@ -11,7 +12,7 @@ const publication = {
   indexing: 'Scopus Indexed',
   status: 'Paper Presented',
   ieeeLink: 'https://ieeexplore.ieee.org/document/11506696',
-  certificateLink: '#',
+  certificateLink: certificatePdf,
   meta: [
     { icon: FiCalendar, label: 'Jan 2026' },
     { icon: FiAward, label: 'IEEE' },
