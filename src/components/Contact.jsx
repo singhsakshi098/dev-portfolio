@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FiMail, FiMapPin, FiSend, FiGithub, FiLinkedin, FiBookOpen, FiCheckCircle, FiAlertCircle } from 'react-icons/fi';
+import { FiMail, FiMapPin, FiSend, FiGithub, FiLinkedin, FiCheckCircle, FiAlertCircle } from 'react-icons/fi';
 import SectionHeading from './SectionHeading';
 import { personalInfo } from '../data/portfolioData';
 
@@ -18,7 +18,8 @@ export default function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!form.name || !form.email || !form.message) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!form.name.trim() || !form.email.trim() || !form.message.trim() || !emailRegex.test(form.email.trim())) {
       setStatus('error');
       setTimeout(() => setStatus(null), 3000);
       return;
@@ -74,7 +75,6 @@ export default function Contact() {
             {[
               { icon: FiMail, label: 'Email', value: personalInfo.email, href: `mailto:${personalInfo.email}` },
               { icon: FiMapPin, label: 'Location', value: personalInfo.location, href: null },
-              { icon: FiBookOpen, label: 'Research Paper', value: 'Published on IEEE Xplore', href: personalInfo.paper },
             ].map((item, i) => (
               <motion.div
                 key={i}
@@ -211,7 +211,7 @@ export default function Contact() {
               className="mt-4 flex items-center gap-2 px-4 py-3 rounded-xl bg-green-500/10 border border-green-500/20 text-green-400 text-sm"
             >
               <FiCheckCircle className="w-4 h-4" />
-              Message sent successfully! I'll get back to you soon.
+              Message sent successfully! ✓
             </motion.div>
           )}
           {status === 'error' && (
