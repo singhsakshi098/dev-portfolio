@@ -25,7 +25,8 @@ export default function About() {
               <img
                 src={profileImg}
                 alt="Sakshi Singh"
-                className="w-full h-full object-cover object-top"
+                className="w-full h-full object-cover"
+                style={{ objectPosition: 'center 25%' }}
               />
             </div>
             {/* Background accent orb */}
