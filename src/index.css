@@ -583,60 +583,32 @@ nav .gradient-text {
 }
 
 /* ═══════════════════════════════════════════════════════
-   PROFILE PHOTO — CIRCULAR WITH ROTATING BORDER
+   PROFILE PHOTO — CLEAN CIRCULAR
    ═══════════════════════════════════════════════════════ */
 
-@keyframes rotate-border {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-@keyframes orb-pulse {
-  0%, 100% { opacity: 0.35; transform: translate(-50%, -50%) scale(1); }
-  50% { opacity: 0.5; transform: translate(-50%, -50%) scale(1.08); }
-}
-
-/* Container */
 .profile-container {
   display: inline-block;
-  transition: transform 0.4s ease;
+  transition: transform 0.3s ease;
 }
 .profile-container:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 
-/* Glow orb behind */
-.profile-orb {
-  width: 320px;
-  height: 320px;
-  background: radial-gradient(circle, #7c3aed 0%, transparent 70%);
-  filter: blur(60px);
-  border-radius: 50%;
-  animation: orb-pulse 4s ease-in-out infinite;
-}
-
-/* Rotating gradient border */
+/* Static gradient border */
 .profile-border {
-  position: relative;
-  background: conic-gradient(from 0deg, #7c3aed, #06b6d4, #ec4899, #7c3aed);
+  background: linear-gradient(135deg, #7c3aed, #06b6d4);
   border-radius: 50%;
-  animation: rotate-border 3s linear infinite;
-  box-shadow:
-    0 0 25px rgba(124, 58, 237, 0.6),
-    0 0 50px rgba(6, 182, 212, 0.3);
-  transition: box-shadow 0.4s ease;
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.35);
+  transition: box-shadow 0.3s ease;
 }
 .profile-container:hover .profile-border {
-  box-shadow:
-    0 0 35px rgba(124, 58, 237, 0.8),
-    0 0 70px rgba(6, 182, 212, 0.4),
-    0 0 100px rgba(236, 72, 153, 0.15);
+  box-shadow: 0 0 30px rgba(124, 58, 237, 0.5);
 }
 
 /* Circular image wrapper */
 .profile-image-wrapper {
-  width: 280px;
-  height: 280px;
+  width: 260px;
+  height: 260px;
   border-radius: 50%;
   overflow: hidden;
   position: relative;
@@ -648,21 +620,13 @@ nav .gradient-text {
   object-fit: cover;
   object-position: center top;
   display: block;
-  transition: transform 0.4s ease;
-}
-.profile-container:hover .profile-image-wrapper img {
-  transform: scale(1.06);
 }
 
 /* Responsive */
 @media (max-width: 640px) {
   .profile-image-wrapper {
-    width: 220px;
-    height: 220px;
-  }
-  .profile-orb {
-    width: 260px;
-    height: 260px;
+    width: 200px;
+    height: 200px;
   }
 }
 

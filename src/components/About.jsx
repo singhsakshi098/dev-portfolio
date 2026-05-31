@@ -17,18 +17,11 @@ export default function About() {
           transition={{ duration: 0.7, ease: 'easeOut' }}
           className="lg:col-span-2 flex justify-center"
         >
-          <div className="profile-container relative">
-            {/* Glow orb behind */}
-            <div className="profile-orb absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0" />
-
-            {/* Rotating gradient border */}
-            <div className="profile-border relative z-10 rounded-full p-[3px]">
-              {/* Circular photo */}
+          <div className="profile-container">
+            {/* Static gradient border */}
+            <div className="profile-border rounded-full p-[3px]">
               <div className="profile-image-wrapper">
-                <img
-                  src={profileImg}
-                  alt="Sakshi Singh"
-                />
+                <img src={profileImg} alt="Sakshi Singh" />
               </div>
             </div>
           </div>
