@@ -114,16 +114,6 @@ export const experience = [
       'Completed IBM SkillsBuild Project Based Learning Program focused on Front End Web Development. Built beginner-to-intermediate level web projects using HTML, CSS, and JavaScript. Strengthened fundamentals of responsive design, UI development, and best coding practices.',
     tags: ['HTML', 'CSS', 'JavaScript', 'Responsive Design', 'IBM'],
   },
-  {
-    id: 2,
-    type: 'certification',
-    title: 'IBM SkillsBuild Certificate',
-    organization: 'IBM & CSRBOX',
-    duration: 'Aug 2025',
-    description:
-      'Earned certification for completing the IBM SkillsBuild Project Based Learning Program in Front End Web Development.',
-    tags: ['IBM', 'Certification', 'Frontend'],
-  },
 ];
 
 export const navLinks = [
