@@ -64,19 +64,6 @@ export const skills = {
 export const projects = [
   {
     id: 1,
-    title: 'Majdoor Digital Trust-Ledger (MDTL)',
-    description:
-      'A decentralized framework for bridging informal labor to formal economic inclusion — final year research project published at IEEE ICSFT 2026.',
-    longDescription: 'Designed and developed a decentralized trust-ledger system aimed at integrating informal laborers into the formal economy. The framework provides digital identity, trust scoring, and transparent transaction records. Presented and published at the 2026 International Conference on Smart Futuristic Technology (ICSFT), IEEE.',
-    image: null,
-    tags: ['Decentralized Systems', 'Research', 'IEEE', 'Final Year Project'],
-    github: 'https://github.com/singhsakshi098',
-    live: 'https://ieeexplore.ieee.org/document/11506696',
-    featured: true,
-    category: 'Full Stack',
-  },
-  {
-    id: 2,
     title: 'Netflix GPT — AI Movie Recommender',
     description:
       'A responsive, multi-language streaming platform featuring an intelligent GPT-powered search that lets users find movies using natural language queries.',
@@ -89,7 +76,7 @@ export const projects = [
     category: 'Full Stack',
   },
   {
-    id: 3,
+    id: 2,
     title: 'Food Delivery App',
     description:
       'A modular and maintainable food delivery platform with client-side routing, cart management with Redux Toolkit, and reusable restaurant, menu, and cart components.',
@@ -102,7 +89,7 @@ export const projects = [
     category: 'Frontend',
   },
   {
-    id: 4,
+    id: 3,
     title: 'Secure Password Generator',
     description:
       'A responsive web-based password generator for creating strong, customizable passwords with options for length, character types, and real-time strength analysis.',
@@ -111,7 +98,7 @@ export const projects = [
     tags: ['HTML', 'CSS', 'JavaScript'],
     github: 'https://github.com/singhsakshi098/password-generator',
     live: 'https://secure-mypassword.netlify.app',
-    featured: false,
+    featured: true,
     category: 'Frontend',
   },
 ];
@@ -129,17 +116,6 @@ export const experience = [
   },
   {
     id: 2,
-    type: 'research',
-    title: 'Published IEEE Paper — MDTL',
-    organization: 'IEEE ICSFT 2026',
-    duration: 'Jan 2026',
-    description:
-      'Presented and published research paper titled "Majdoor Digital Trust-Ledger (MDTL): A Decentralized Framework for Bridging Informal Labor to Formal Economic Inclusion" at the 2026 International Conference on Smart Futuristic Technology (ICSFT), IEEE Bangalore Section.',
-    tags: ['IEEE', 'Research Paper', 'Decentralized Systems', 'ICSFT 2026'],
-    link: 'https://ieeexplore.ieee.org/document/11506696',
-  },
-  {
-    id: 3,
     type: 'achievement',
     title: 'Netflix GPT — AI Movie Recommender',
     organization: 'Personal Project',
@@ -149,7 +125,7 @@ export const experience = [
     tags: ['React', 'Firebase', 'GPT API', 'Redux'],
   },
   {
-    id: 4,
+    id: 3,
     type: 'achievement',
     title: 'Food Delivery App',
     organization: 'Personal Project',
@@ -159,7 +135,7 @@ export const experience = [
     tags: ['React', 'Redux Toolkit', 'Testing'],
   },
   {
-    id: 5,
+    id: 4,
     type: 'certification',
     title: 'IBM SkillsBuild Certificate',
     organization: 'IBM & CSRBOX',
