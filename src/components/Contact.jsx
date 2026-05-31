@@ -16,7 +16,7 @@ export default function Contact() {
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!form.name || !form.email || !form.message) {
       setStatus('error');
@@ -24,14 +24,27 @@ export default function Contact() {
       return;
     }
     setLoading(true);
-    // Simulate form submission
-    setTimeout(() => {
-      console.log('Form submitted:', form);
-      setLoading(false);
-      setStatus('success');
-      setForm({ name: '', email: '', subject: '', message: '' });
-      setTimeout(() => setStatus(null), 4000);
-    }, 1500);
+    try {
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+          'form-name': 'contact',
+          ...form,
+        }).toString(),
+      });
+      if (response.ok) {
+        setStatus('success');
+        setForm({ name: '', email: '', subject: '', message: '' });
+      } else {
+        setStatus('error');
+      }
+    } catch (err) {
+      console.error('Form submission error:', err);
+      setStatus('error');
+    }
+    setLoading(false);
+    setTimeout(() => setStatus(null), 4000);
   };
 
   return (
