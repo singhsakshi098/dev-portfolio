@@ -583,178 +583,118 @@ nav .gradient-text {
 }
 
 /* ═══════════════════════════════════════════════════════
-   PROFILE PHOTO — FUTURISTIC HUD FRAME
+   PROFILE PHOTO — DIAGONAL-CUT CYBER FRAME
    ═══════════════════════════════════════════════════════ */
 
-/* Angle property for rotating gradient */
-@property --angle {
-  syntax: '<angle>';
-  initial-value: 0deg;
-  inherits: false;
+@keyframes cyber-pulse-orb {
+  0%, 100% { opacity: 0.35; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 0.55; transform: translate(-50%, -50%) scale(1.08); }
 }
 
-@keyframes spin-border {
-  to { --angle: 360deg; }
+@keyframes cyber-border-glow {
+  0%, 100% {
+    box-shadow: 0 0 25px rgba(124, 58, 237, 0.4), 0 0 50px rgba(6, 182, 212, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(124, 58, 237, 0.6), 0 0 80px rgba(6, 182, 212, 0.3), 0 0 100px rgba(236, 72, 153, 0.1);
+  }
 }
 
-@keyframes pulse-orb {
-  0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
-  50% { opacity: 0.5; transform: translate(-50%, -50%) scale(1.1); }
+@keyframes pill-float {
+  0%, 100% { transform: translateY(-50%) translateX(0); }
+  50% { transform: translateY(-50%) translateX(4px); }
 }
 
-@keyframes scanline {
-  0% { top: -100%; }
-  100% { top: 100%; }
-}
-
-@keyframes badge-ring-pulse {
-  0% { transform: scale(1); opacity: 0.6; }
-  100% { transform: scale(2.4); opacity: 0; }
+/* Clip-path shape */
+:root {
+  --cyber-clip: polygon(0 0, 85% 0, 100% 15%, 100% 100%, 15% 100%, 0 85%);
 }
 
 /* Container */
-.hud-photo-container {
+.cyber-photo-container {
   display: inline-block;
-  transition: transform 0.4s ease;
+  transition: all 0.4s ease;
 }
-.hud-photo-container:hover {
-  transform: scale(1.03);
+.cyber-photo-container:hover {
+  transform: scale(1.04);
 }
 
-/* Floating glow orb behind */
-.hud-glow-orb {
+/* Floating glow orb */
+.cyber-glow-orb {
+  width: 350px;
+  height: 350px;
   background: radial-gradient(circle, #7c3aed 0%, transparent 70%);
   filter: blur(80px);
-  animation: pulse-orb 4s ease-in-out infinite;
+  border-radius: 50%;
+  animation: cyber-pulse-orb 4s ease-in-out infinite;
 }
 
-/* Rotating gradient border */
-.hud-border-wrap {
-  background: conic-gradient(from var(--angle), #7c3aed, #06b6d4, #a855f7, #ec4899, #7c3aed);
-  animation: spin-border 3s linear infinite;
-  box-shadow:
-    0 0 30px rgba(124, 58, 237, 0.5),
-    0 0 60px rgba(6, 182, 212, 0.2);
-  transition: box-shadow 0.4s ease;
+/* Gradient border wrapper — clip-path */
+.cyber-border-wrap {
+  background: linear-gradient(135deg, #7c3aed, #06b6d4, #ec4899);
+  clip-path: var(--cyber-clip);
+  animation: cyber-border-glow 3s ease-in-out infinite;
 }
-.hud-photo-container:hover .hud-border-wrap {
+.cyber-photo-container:hover .cyber-border-wrap {
   box-shadow:
-    0 0 40px rgba(124, 58, 237, 0.7),
-    0 0 80px rgba(6, 182, 212, 0.35),
-    0 0 120px rgba(168, 85, 247, 0.15);
+    0 0 50px rgba(124, 58, 237, 0.7),
+    0 0 100px rgba(6, 182, 212, 0.4),
+    0 0 140px rgba(236, 72, 153, 0.15);
 }
 
-/* Photo inner */
-.hud-photo-inner {
+/* Photo inner — same clip-path */
+.cyber-photo-inner {
+  width: 300px;
+  height: 380px;
+  clip-path: var(--cyber-clip);
   background: #050008;
+  overflow: hidden;
 }
 
-/* Profile image */
-.profile-image {
-  object-fit: contain;
+/* Image — cover, no black bars */
+.cyber-photo-img {
+  object-fit: cover;
   object-position: center top;
   display: block;
-  border-radius: 18px;
-  background: rgba(13, 0, 21, 0.5);
+  width: 100%;
+  height: 100%;
   transition: transform 0.4s ease;
 }
-
-/* ---- HUD Corner Brackets ---- */
-.hud-corner {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  z-index: 20;
-  transition: all 0.3s ease;
-}
-.hud-corner::before,
-.hud-corner::after {
-  content: '';
-  position: absolute;
-  background: #06b6d4;
-  transition: all 0.3s ease;
+.cyber-photo-container:hover .cyber-photo-img {
+  transform: scale(1.05);
 }
 
-/* Top-left */
-.hud-corner-tl { top: -6px; left: -6px; }
-.hud-corner-tl::before { top: 0; left: 0; width: 20px; height: 3px; }
-.hud-corner-tl::after { top: 0; left: 0; width: 3px; height: 20px; }
-
-/* Top-right */
-.hud-corner-tr { top: -6px; right: -6px; }
-.hud-corner-tr::before { top: 0; right: 0; width: 20px; height: 3px; }
-.hud-corner-tr::after { top: 0; right: 0; width: 3px; height: 20px; }
-
-/* Bottom-left */
-.hud-corner-bl { bottom: -6px; left: -6px; }
-.hud-corner-bl::before { bottom: 0; left: 0; width: 20px; height: 3px; }
-.hud-corner-bl::after { bottom: 0; left: 0; width: 3px; height: 20px; }
-
-/* Bottom-right */
-.hud-corner-br { bottom: -6px; right: -6px; }
-.hud-corner-br::before { bottom: 0; right: 0; width: 20px; height: 3px; }
-.hud-corner-br::after { bottom: 0; right: 0; width: 3px; height: 20px; }
-
-/* Corner hover — move inward */
-.hud-photo-container:hover .hud-corner-tl { top: -3px; left: -3px; }
-.hud-photo-container:hover .hud-corner-tr { top: -3px; right: -3px; }
-.hud-photo-container:hover .hud-corner-bl { bottom: -3px; left: -3px; }
-.hud-photo-container:hover .hud-corner-br { bottom: -3px; right: -3px; }
-.hud-photo-container:hover .hud-corner::before,
-.hud-photo-container:hover .hud-corner::after {
-  background: #22d3ee;
-  box-shadow: 0 0 8px rgba(6, 182, 212, 0.6);
+/* IBM Intern floating pill */
+.cyber-pill {
+  animation: pill-float 3s ease-in-out infinite;
+}
+.cyber-pill-inner {
+  background: rgba(124, 58, 237, 0.15);
+  border: 1px solid rgba(124, 58, 237, 0.4);
+  color: #a78bfa;
+  letter-spacing: 0.04em;
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.cyber-photo-container:hover .cyber-pill-inner {
+  box-shadow: 0 0 30px rgba(124, 58, 237, 0.4), 0 0 60px rgba(124, 58, 237, 0.15);
+  border-color: rgba(124, 58, 237, 0.6);
+  color: #c4b5fd;
 }
 
-/* ---- Scanline Hover Effect ---- */
-.hud-scanline::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: -100%;
-  width: 100%;
-  height: 4px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-.hud-photo-container:hover .hud-scanline::before {
-  opacity: 1;
-  animation: scanline 1.5s ease-in-out;
-}
-
-/* ---- Available for Work Badge ---- */
-.hud-badge-inner {
-  background: rgba(34, 197, 94, 0.15);
-  border: 1px solid rgba(34, 197, 94, 0.4);
-  color: #4ade80;
-  font-size: 0.65rem;
-  letter-spacing: 0.05em;
-  position: relative;
-  box-shadow: 0 0 15px rgba(34, 197, 94, 0.2);
-}
-.hud-badge-ring {
-  position: absolute;
-  inset: -4px;
-  border-radius: 9999px;
-  border: 1.5px solid rgba(34, 197, 94, 0.4);
-  animation: badge-ring-pulse 2.5s ease-out infinite;
-  pointer-events: none;
-}
-
-/* ---- Responsive ---- */
+/* Responsive */
 @media (max-width: 640px) {
-  .hud-photo-inner {
-    width: 200px !important;
-    height: 230px !important;
+  .cyber-photo-inner {
+    width: 220px;
+    height: 280px;
   }
-  .hud-glow-orb {
-    width: 220px !important;
-    height: 220px !important;
+  .cyber-glow-orb {
+    width: 250px;
+    height: 250px;
   }
-  .hud-badge {
-    right: -2px;
-    bottom: -2px;
+  .cyber-pill {
+    right: -2px !important;
   }
 }
 
