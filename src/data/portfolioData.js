@@ -176,5 +176,6 @@ export const navLinks = [
   { name: 'Skills', href: '#skills' },
   { name: 'Projects', href: '#projects' },
   { name: 'Experience', href: '#experience' },
+  { name: 'Research', href: '#publications' },
   { name: 'Contact', href: '#contact' },
 ];

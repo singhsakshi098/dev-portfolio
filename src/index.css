@@ -581,3 +581,138 @@ nav .gradient-text {
   font-weight: 800;
   letter-spacing: 0.05em;
 }
+
+/* ═══════════════════════════════════════════════════════
+   PUBLICATIONS — ANIMATED NEON CARD
+   ═══════════════════════════════════════════════════════ */
+
+@keyframes border-cycle {
+  0%, 100% { border-color: rgba(139, 92, 246, 0.4); box-shadow: 0 0 30px rgba(139, 92, 246, 0.1); }
+  50% { border-color: rgba(6, 182, 212, 0.5); box-shadow: 0 0 30px rgba(6, 182, 212, 0.1); }
+}
+
+@keyframes pub-badge-pulse {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+@keyframes pub-glow-sweep {
+  0% { background-position: -200% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* Card wrapper — cycling neon border */
+.pub-card {
+  position: relative;
+}
+
+.pub-card-border {
+  border: 2px solid rgba(139, 92, 246, 0.3);
+  animation: border-cycle 4s ease-in-out infinite;
+  border-radius: 1rem;
+  z-index: 0;
+}
+
+/* Card inner — glassmorphism */
+.pub-card-inner {
+  background: rgba(13, 0, 21, 0.65);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-radius: 1rem;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* Subtle holographic sweep on the card */
+.pub-card-inner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(139, 92, 246, 0.03) 40%,
+    rgba(6, 182, 212, 0.05) 50%,
+    rgba(236, 72, 153, 0.03) 60%,
+    transparent 70%
+  );
+  background-size: 300% 100%;
+  animation: pub-glow-sweep 8s ease-in-out infinite;
+  pointer-events: none;
+  border-radius: 1rem;
+}
+
+/* Published badge — neon green with pulse */
+.pub-badge {
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.35);
+  color: #4ade80;
+  position: relative;
+}
+
+.pub-badge::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 9999px;
+  border: 1.5px solid rgba(34, 197, 94, 0.4);
+  animation: pub-badge-pulse 2.5s ease-out infinite;
+  pointer-events: none;
+}
+
+.pub-badge-dot {
+  box-shadow: 0 0 6px rgba(74, 222, 128, 0.8), 0 0 14px rgba(74, 222, 128, 0.4);
+}
+
+/* IEEE button — neon blue glow */
+.pub-btn-ieee {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(6, 182, 212, 0.15));
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  color: #60a5fa;
+}
+.pub-btn-ieee:hover {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(6, 182, 212, 0.25));
+  border-color: rgba(59, 130, 246, 0.7);
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3), 0 0 40px rgba(59, 130, 246, 0.1);
+  color: #93c5fd;
+}
+
+/* Certificate button — gold/amber glow */
+.pub-btn-cert {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.12), rgba(217, 119, 6, 0.12));
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  color: #fbbf24;
+}
+.pub-btn-cert:hover {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.25), rgba(217, 119, 6, 0.2));
+  border-color: rgba(245, 158, 11, 0.65);
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.25), 0 0 40px rgba(245, 158, 11, 0.1);
+  color: #fcd34d;
+}
+
+/* Responsive — badge position on small screens */
+@media (max-width: 640px) {
+  .pub-badge {
+    font-size: 0.65rem;
+    padding: 0.2rem 0.5rem;
+  }
+
+  section#publications h3 {
+    padding-right: 0;
+    font-size: 1.1rem;
+  }
+
+  .pub-card-inner {
+    padding: 1.5rem;
+  }
+
+  /* Stack badge below title on mobile */
+  section#publications .absolute.top-5.right-5 {
+    position: relative;
+    top: auto;
+    right: auto;
+    margin-bottom: 0.75rem;
+    display: inline-flex;
+  }
+}
