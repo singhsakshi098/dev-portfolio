@@ -19,14 +19,13 @@ export default function About() {
         >
           <div className="profile-photo-wrapper relative">
             {/* Rotating gradient border */}
-            <div className="profile-glow-ring absolute inset-[-4px] rounded-full z-0" />
+            <div className="profile-glow-ring absolute inset-[-4px] rounded-[24px] z-0" />
             {/* Photo */}
-            <div className="profile-photo-inner relative z-10 rounded-full overflow-hidden w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80">
+            <div className="profile-photo-inner relative z-10 rounded-[20px] overflow-hidden" style={{ width: '280px', height: '320px' }}>
               <img
                 src={profileImg}
                 alt="Sakshi Singh"
-                className="w-full h-full object-cover"
-                style={{ objectPosition: 'center 15%' }}
+                className="profile-image w-full h-full"
               />
             </div>
             {/* Background accent orb */}
