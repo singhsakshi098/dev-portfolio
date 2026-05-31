@@ -18,19 +18,14 @@ export default function About() {
           className="lg:col-span-2 flex justify-center"
         >
           <div className="profile-photo-wrapper relative">
-            {/* Rotating gradient border */}
-            <div className="profile-glow-ring absolute inset-[-4px] rounded-[24px] z-0" />
             {/* Photo */}
-            <div className="profile-photo-inner relative z-10 rounded-[20px] overflow-hidden" style={{ width: '280px', height: '320px' }}>
+            <div className="profile-photo-inner relative rounded-[20px] overflow-hidden" style={{ width: '280px', height: '320px' }}>
               <img
                 src={profileImg}
                 alt="Sakshi Singh"
                 className="profile-image w-full h-full"
               />
             </div>
-            {/* Background accent orb */}
-            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-neon-purple/10 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute -top-4 -left-4 w-24 h-24 bg-neon-cyan/8 rounded-full blur-2xl pointer-events-none" />
           </div>
         </motion.div>
 
