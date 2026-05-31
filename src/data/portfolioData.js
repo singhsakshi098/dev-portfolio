@@ -116,26 +116,6 @@ export const experience = [
   },
   {
     id: 2,
-    type: 'achievement',
-    title: 'Netflix GPT — AI Movie Recommender',
-    organization: 'Personal Project',
-    duration: '2025',
-    description:
-      'Engineered a full-featured AI-powered movie platform with GPT-based natural language search, Firebase authentication, and Redux state management — deployed on Netlify.',
-    tags: ['React', 'Firebase', 'GPT API', 'Redux'],
-  },
-  {
-    id: 3,
-    type: 'achievement',
-    title: 'Food Delivery App',
-    organization: 'Personal Project',
-    duration: '2025',
-    description:
-      'Built a modular, scalable food delivery platform with React, Redux Toolkit, client-side routing, and test-driven development strategies.',
-    tags: ['React', 'Redux Toolkit', 'Testing'],
-  },
-  {
-    id: 4,
     type: 'certification',
     title: 'IBM SkillsBuild Certificate',
     organization: 'IBM & CSRBOX',
