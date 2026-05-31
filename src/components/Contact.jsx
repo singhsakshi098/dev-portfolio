@@ -19,8 +19,13 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!form.name.trim() || !form.email.trim() || !form.message.trim() || !emailRegex.test(form.email.trim())) {
-      setStatus('error');
+    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
+      setStatus('validation');
+      setTimeout(() => setStatus(null), 3000);
+      return;
+    }
+    if (!emailRegex.test(form.email.trim())) {
+      setStatus('validation');
       setTimeout(() => setStatus(null), 3000);
       return;
     }
@@ -38,11 +43,20 @@ export default function Contact() {
         setStatus('success');
         setForm({ name: '', email: '', subject: '', message: '' });
       } else {
-        setStatus('error');
+        // Netlify form failed — fallback to mailto
+        const subject = encodeURIComponent(form.subject || 'Portfolio Contact');
+        const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`);
+        window.open(`mailto:${personalInfo.email}?subject=${subject}&body=${body}`, '_self');
+        setStatus('success');
+        setForm({ name: '', email: '', subject: '', message: '' });
       }
     } catch (err) {
-      console.error('Form submission error:', err);
-      setStatus('error');
+      // Network error — fallback to mailto
+      const subject = encodeURIComponent(form.subject || 'Portfolio Contact');
+      const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`);
+      window.open(`mailto:${personalInfo.email}?subject=${subject}&body=${body}`, '_self');
+      setStatus('success');
+      setForm({ name: '', email: '', subject: '', message: '' });
     }
     setLoading(false);
     setTimeout(() => setStatus(null), 4000);
@@ -214,14 +228,14 @@ export default function Contact() {
               Message sent successfully! ✓
             </motion.div>
           )}
-          {status === 'error' && (
+          {status === 'validation' && (
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               className="mt-4 flex items-center gap-2 px-4 py-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm"
             >
               <FiAlertCircle className="w-4 h-4" />
-              Please fill in all required fields.
+              Please fill in all required fields correctly.
             </motion.div>
           )}
         </motion.div>
