@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import SectionHeading from './SectionHeading';
 import { personalInfo } from '../data/portfolioData';
-import profileImg from '../assets/profile.png';
+import profileImg from '../assets/Profile.jpeg';
 
 export default function About() {
   return (
