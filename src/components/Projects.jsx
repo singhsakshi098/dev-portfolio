@@ -41,7 +41,7 @@ export default function Projects() {
                 className="absolute inset-0 rounded-xl glow-purple"
                 style={{ background: 'linear-gradient(135deg, #8b5cf6, #7c3aed)' }}
                 transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-              />
+              /> 
             )}
             <span className="relative z-10">{tab}</span>
           </button>
