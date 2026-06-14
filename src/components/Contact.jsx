@@ -31,32 +31,27 @@ export default function Contact() {
     }
     setLoading(true);
     try {
-      const response = await fetch('/', {
+      const response = await fetch('https://formsubmit.co/ajax/sakshisingh7384@gmail.com', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({
-          'form-name': 'contact',
-          ...form,
-        }).toString(),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: form.name.trim(),
+          email: form.email.trim(),
+          subject: form.subject.trim() || 'New Portfolio Contact',
+          message: form.message.trim(),
+          _subject: `Portfolio Contact: ${form.subject.trim() || 'New Message'}`,
+          _template: 'table',
+        }),
       });
-      if (response.ok) {
+      const data = await response.json();
+      if (data.success) {
         setStatus('success');
         setForm({ name: '', email: '', subject: '', message: '' });
       } else {
-        // Netlify form failed — fallback to mailto
-        const subject = encodeURIComponent(form.subject || 'Portfolio Contact');
-        const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`);
-        window.open(`mailto:${personalInfo.email}?subject=${subject}&body=${body}`, '_self');
-        setStatus('success');
-        setForm({ name: '', email: '', subject: '', message: '' });
+        setStatus('submit-error');
       }
     } catch (err) {
-      // Network error — fallback to mailto
-      const subject = encodeURIComponent(form.subject || 'Portfolio Contact');
-      const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`);
-      window.open(`mailto:${personalInfo.email}?subject=${subject}&body=${body}`, '_self');
-      setStatus('success');
-      setForm({ name: '', email: '', subject: '', message: '' });
+      setStatus('submit-error');
     }
     setLoading(false);
     setTimeout(() => setStatus(null), 4000);
@@ -236,6 +231,16 @@ export default function Contact() {
             >
               <FiAlertCircle className="w-4 h-4" />
               Please fill in all required fields correctly.
+            </motion.div>
+          )}
+          {status === 'submit-error' && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mt-4 flex items-center gap-2 px-4 py-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm"
+            >
+              <FiAlertCircle className="w-4 h-4" />
+              Failed to send message. Please try again or email me directly.
             </motion.div>
           )}
         </motion.div>
